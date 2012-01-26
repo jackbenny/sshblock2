@@ -1,0 +1,57 @@
+SSH Block 2
+
+I am glad to announce version 2 of the SSH Block script!
+Version two contains many improvments over the earlier versions.
+
+A quick list with the best of version two:
+- Total re-write of the code
+- No more catting back and forth thruogh the script
+- No more strange temp files in /Var/state/ssh_block
+- ONE scriptfile for all system (Linux, FreeBSD, Solaris and Mac OS X)
+- No more un-neccesary grepping. The script only "greps" if the size of the
+log file has changed. This way it uses less system recuorces.
+- The blocked IP's are now inserted directly into hosts.deny
+
+I came up with ideea of making a version two since I made the port to Solaris
+and Mac OS X. I liked the code that came out of these two ports. Later on I
+started thinking about what can be done about the script re-writing 
+the hosts.deny file every 10 second. So for this I added the logfile size check.
+And I didn't like having 4 diffrent versions (5 if you count the iptable 
+version) of the script. So I made a "One for all" version.
+
+I hope version two of SSH Block will be appreciated both among version one users
+aswell as among new users.
+
+Please drop me an e-mail with comments, bugs, improvments or just about 
+anything!
+
+This is the new SSH Block, simply called sshblock2.
+It sould run out of the box on FreeBSD, Mac OS X, Linux and Solaris, though
+there are some extra steps to make it work with Solaris (since TCP Wrappers
+arn't enabled by default and no logging is done.)
+
+
+NOTE TO SOLARIS USERS
+
+There are some things you have to do to your system before this script
+will acually work under Solaris.
+To start with, TCP Wrappers is not enabled by default on Solaris 10. How to
+enable TCP Wrappers and some info about it can be found here:
+http://www.sun.com/bigadmin/content/submitted/tcp_wrap_solaris10.html
+
+Second, you have to enable syslog logging of the ssh daemon. This is done by
+editing /etc/syslog.conf.
+Adding the following line will have sshd logging to /var/log/authlog
+
+auth.info /var/log/authlog
+
+Now you can run the script (as root) and it will block IP numbers of probing
+hosts. The scripts will add this hosts to your /etc/hosts.deny file like this:
+
+#BEGIN_SSHBLOCK
+sshd : 192.168.0.1
+sshd : 10.0.0.3
+#END_SSHBLOCK
+
+I would recommend to backup your /etc/hosts.deny and your /etc/syslog.conf
+before making changes and running the script.
