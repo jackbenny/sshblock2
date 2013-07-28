@@ -3,8 +3,8 @@ SSH Block 2
 
 This is version 2 of my old SSH Block script.
 
-A quick list of what has changed with version 2:
-------------------------------------------------
+A quick list of what has changed with version 2
+-----------------------------------------------
 - Total re-write of the code
 - No more catting back and forth thruogh the script
 - No more strange temp files in /var/state/ssh\_block
