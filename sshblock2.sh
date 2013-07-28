@@ -2,7 +2,7 @@
 
 ################################################################################
 #                                                                              #
-#  Copyright (C) 2006 Jack-Benny Persson <jake@cyberinfo.se>                   #
+#  Copyright (C) 2006-2013 Jack-Benny Persson <jack-benny@cyberinfo.se>        #
 #                                                                              #
 #   This program is free software; you can redistribute it and/or modify       #
 #   it under the terms of the GNU General Public License as published by       #
@@ -20,7 +20,7 @@
 #                                                                              #
 ################################################################################
 
-# Version 2.3
+# Version 2.4
 #
 # SSH Block 2 - A script that blocks SSH probing hosts in /etc/hosts.deny
 # This is version two of SSH Block, wich is a total re-write of the original
@@ -155,6 +155,8 @@ Linux_size()
                 B=`ls -l /var/log/messages | awk '{print $5}'`
                 let C=A+B
                 echo $C
+	elif [ -e /var/log/auth.log ]; then
+		ls -l /var/log/auth.log | awk '{print $5}'
         elif [ -e /var/log/secure ]; then
                 ls -l /var/log/secure | awk '{print $5}'
         elif [ -e /var/log/messages ]; then
