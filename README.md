@@ -53,10 +53,10 @@ auth.info /var/log/authlog
 Now you can run the script (as root) and it will block IP numbers of probing
 hosts. The scripts will add this hosts to your /etc/hosts.deny file like this:
 
-#BEGIN_SSHBLOCK
-sshd : 192.168.0.1
-sshd : 10.0.0.3
-#END_SSHBLOCK
+	#BEGIN_SSHBLOCK
+	sshd : 192.168.0.1
+	sshd : 10.0.0.3
+	#END_SSHBLOCK
 
 I would recommend to backup your /etc/hosts.deny and your /etc/syslog.conf
 before making changes and running the script.
